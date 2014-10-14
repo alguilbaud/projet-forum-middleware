@@ -6,8 +6,7 @@ public class AfficheurClient implements InterfaceAfficheur {
 	public JTextArea messages;
 	
 	public void affiche(String msg) {
-		messages.getText();
-
+		messages.setText(messages.getText() + "\n" + msg);
 	}
 
 }
