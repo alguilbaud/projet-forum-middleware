@@ -27,12 +27,12 @@ public class LancementServeur {
 		}
         try {
         	LocateRegistry.createRegistry(8099);
-            Serveur serveur = new Serveur();
-			//Naming.rebind("rmi://localhost:8099/sujet", sujet);
-			//System.out.println(sujet);
-            IServeur stubServeur = (IServeur) UnicastRemoteObject.exportObject(serveur, 0);
-			Registry registry = LocateRegistry.getRegistry();
-			registry.rebind("Serveur", stubServeur);
+        	Sujet sujet = new Sujet("Sport");
+			Naming.rebind("rmi://localhost:8099/sujet", sujet);
+			System.out.println(sujet);
+            //IServeur stubServeur = (IServeur) UnicastRemoteObject.exportObject(serveur, 0);
+			//Registry registry = LocateRegistry.getRegistry();
+			//registry.rebind("Serveur", stubServeur);
 			//System.out.println("Chat bound");
 		} catch (Exception e) {
 			e.printStackTrace();
