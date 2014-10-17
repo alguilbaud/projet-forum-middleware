@@ -1,13 +1,7 @@
 package client;
-import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Set;
 
 import javax.swing.JButton;
@@ -44,15 +38,5 @@ public class IHMChoix{
 		
 		fenetre.setVisible(true);	
 	}
-  /*public static void main(String[] args) {
-	  new IHMSujets();
-	  try {
-		    ISujet sujet=(ISujet)Naming.lookup("rmi://localhost:8099/sujet");
-		    sujet.diffuser("aaa");
-	      } catch (Exception e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-	     }
-	}*/
 	
 }

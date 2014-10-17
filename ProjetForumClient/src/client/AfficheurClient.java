@@ -93,5 +93,7 @@ public class AfficheurClient extends UnicastRemoteObject implements IAfficheurCl
 		messages.setText(messages.getText() + "\n" + msg);
 	}
 
-
+	public void fermer(){
+		fenetre.dispose();
+	}
 }
