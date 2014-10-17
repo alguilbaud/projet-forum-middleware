@@ -21,7 +21,7 @@ public class IHMSujet extends JFrame {
 			this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //On dit à l'application de se fermer
 			BorderLayout borderLayout=new BorderLayout();
 			JTextArea messages= new JTextArea();
-			messages.disable();
+			messages.setEditable(false);
 			JTextField message= new JTextField();
 			JButton envoyer= new JButton("envoyer");
 			JPanel panel= new JPanel();

@@ -13,11 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import service.ISujet;
-
-public class IHMSujets extends JFrame{
+public class IHMChoix extends JFrame{
 	
-  public IHMSujets()
+  public IHMChoix()
   {
 	    this.setTitle("Liste des sujets"); //On donne un titre à l'application
 		this.setSize(320,80); //On donne une taille à notre fenêtre
@@ -35,13 +33,13 @@ public class IHMSujets extends JFrame{
 		panel.add(button1);
 		panel.add(button2);
 		this.add(panel);
-		button.addActionListener(new OuvrirFenetreSujet());
-		button1.addActionListener(new OuvrirFenetreSujet());
-		button2.addActionListener(new OuvrirFenetreSujet());
+		button.addActionListener(new ActionBoutonSujet());
+		button1.addActionListener(new ActionBoutonSujet());
+		button2.addActionListener(new ActionBoutonSujet());
 		this.setVisible(true);
 		
   }
-  public static void main(String[] args) {
+  /*public static void main(String[] args) {
 	  new IHMSujets();
 	  try {
 		    ISujet sujet=(ISujet)Naming.lookup("rmi://localhost:8099/sujet");
@@ -50,6 +48,6 @@ public class IHMSujets extends JFrame{
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();
 	     }
-}
+	}*/
 	
 }
