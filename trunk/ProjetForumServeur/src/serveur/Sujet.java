@@ -14,6 +14,7 @@ public class Sujet extends UnicastRemoteObject implements ISujet {
 	private LinkedList<Afficheur> listeAbonnes;
 	
 	public Sujet (String n)throws RemoteException{
+		super();
 		nom = n;
 		listeAbonnes = new LinkedList<Afficheur>();
 	}
@@ -33,18 +34,6 @@ public class Sujet extends UnicastRemoteObject implements ISujet {
 	public synchronized void diffuser(String msg){
 		for (Afficheur aff : listeAbonnes){
 			aff.affiche(msg);
-		}
-	}
-	public static void main(String[] args) {
-		 
-         try {
-        	 LocateRegistry.createRegistry(8099);
-             Sujet sujet = new Sujet("Sport");
-			 Naming.rebind("rmi://localhost:8099/sujet", sujet);
-			 System.out.println(sujet);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 }
