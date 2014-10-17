@@ -3,6 +3,7 @@ package serveur;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
+import java.util.Set;
 
 public class Serveur extends UnicastRemoteObject implements IServeur{
 	HashMap<String,Sujet> mapSujets;
@@ -17,5 +18,9 @@ public class Serveur extends UnicastRemoteObject implements IServeur{
 	
 	public Sujet obtientSujet(String s) throws RemoteException{
 		return mapSujets.get(s);
+	}
+	
+	public Set<String> ensembleSujets() throws RemoteException{
+		return mapSujets.keySet();
 	}
 }

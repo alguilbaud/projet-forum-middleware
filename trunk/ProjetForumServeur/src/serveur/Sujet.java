@@ -11,28 +11,28 @@ import java.util.LinkedList;
 
 public class Sujet extends UnicastRemoteObject implements ISujet {
 	private String nom;
-	private LinkedList<Afficheur> listeAbonnes;
+	private LinkedList<IAfficheur> listeAbonnes;
 	
 	public Sujet (String n)throws RemoteException{
 		super();
 		nom = n;
-		listeAbonnes = new LinkedList<Afficheur>();
+		listeAbonnes = new LinkedList<IAfficheur>();
 	}
 
 	public String getNom() {
 		return nom;
 	}
 	
-	public void inscription(Afficheur aff){
+	public void inscription(IAfficheur aff){
 		listeAbonnes.add(aff);
 	}
 	
-	public void desinscription(Afficheur aff){
+	public void desinscription(IAfficheur aff){
 		listeAbonnes.remove(aff);
 	}
 	
 	public synchronized void diffuser(String msg){
-		for (Afficheur aff : listeAbonnes){
+		for (IAfficheur aff : listeAbonnes){
 			aff.affiche(msg);
 		}
 	}
