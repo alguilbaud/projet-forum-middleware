@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -45,7 +47,7 @@ public class AfficheurClient extends UnicastRemoteObject implements IAfficheurCl
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
-			}	
+			}
 		});
 		
 		JPanel panel = new JPanel();
@@ -60,11 +62,50 @@ public class AfficheurClient extends UnicastRemoteObject implements IAfficheurCl
 		panel.add(panelSouth,BorderLayout.SOUTH);
 		
 		fenetre.add(panel);
+		
+		fenetre.addWindowListener(new WindowListener(){
+			public void windowOpened(WindowEvent e) {}
+
+			public void windowClosing(WindowEvent e) {}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
 		fenetre.setVisible(true);
 	}
 	
 	public void affiche(String msg) throws RemoteException{
 		messages.setText(messages.getText() + "\n" + msg);
 	}
+
 
 }

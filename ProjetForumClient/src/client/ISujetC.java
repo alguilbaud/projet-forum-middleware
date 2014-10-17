@@ -7,5 +7,9 @@ public interface ISujetC extends Remote {
 
 	public void diffuser(String message) throws RemoteException;
 	
+	public void inscription(IAfficheurClient aff);
+	
+	public void desinscription(IAfficheurClient aff);
+	
 	public String getNom() throws RemoteException;
 }
