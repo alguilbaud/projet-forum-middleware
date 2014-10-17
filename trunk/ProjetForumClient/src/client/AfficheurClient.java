@@ -68,35 +68,21 @@ public class AfficheurClient extends UnicastRemoteObject implements IAfficheurCl
 
 			public void windowClosing(WindowEvent e) {}
 
-			@Override
 			public void windowClosed(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
+				try {
+					sujet.desinscription(AfficheurClient.this);
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
 			}
 
-			@Override
-			public void windowIconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void windowIconified(WindowEvent e) {}
 
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void windowDeiconified(WindowEvent e) {}
 
-			@Override
-			public void windowActivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void windowActivated(WindowEvent e) {}
 
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void windowDeactivated(WindowEvent e) {}
 			
 		});
 		
