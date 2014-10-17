@@ -20,7 +20,11 @@ public class ActionBoutonSujet implements ActionListener{
 			if(!ouvert){
 				aff = new AfficheurClient(sujet);
 				sujet.inscription(aff);
-				
+				ouvert = true;
+			}
+			else{
+				aff.fermer();
+				ouvert = false;
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
