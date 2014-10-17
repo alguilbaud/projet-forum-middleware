@@ -6,4 +6,6 @@ import java.rmi.RemoteException;
 public interface ISujetC extends Remote {
 
 	public void diffuser(String message) throws RemoteException;
+	
+	public String getNom() throws RemoteException;
 }

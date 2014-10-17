@@ -1,6 +1,9 @@
 package client;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -11,31 +14,47 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class AfficheurClient extends UnicastRemoteObject implements InterfaceAfficheur {
+public class AfficheurClient extends UnicastRemoteObject implements IAfficheurClient {
 	
-	public JFrame fenetre;
-	public JTextArea messages;
+	private JFrame fenetre;
+	private JTextArea messages;
+	private ISujetC sujet;
 	
-	
-	public AfficheurClient() throws RemoteException {
+	public AfficheurClient(ISujetC suj) throws RemoteException {
 		super();
+		sujet = suj;
 		fenetre = new JFrame();
-		fenetre.setTitle(nom); //On donne un titre à l'application
+		fenetre.setTitle(sujet.getNom()); //On donne un titre à l'application
 		fenetre.setSize(320,320); //On donne une taille à notre fenêtre
 		fenetre.setLocationRelativeTo(null); //On centre la fenêtre sur l'écran
-		fenetre.setResizable(false) ; //On interdit la redimensionnement de la fenêtre
+		fenetre.setResizable(false); //On interdit la redimensionnement de la fenêtre
 		fenetre.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //On dit à l'application de se fermer
-		BorderLayout borderLayout=new BorderLayout();
-		JTextArea messages= new JTextArea();
+		BorderLayout borderLayout = new BorderLayout();
+		
+		messages = new JTextArea();
 		messages.setEditable(false);
-		JTextField message= new JTextField();
-		JButton envoyer= new JButton("envoyer");
-		JPanel panel= new JPanel();
-		JPanel panelSouth= new JPanel();
+		JTextField msg = new JTextField();
+		JButton envoyer = new JButton("envoyer");
+		
+		//creation d'une classe implémentant ActionListener() pour la lier au bouton envoyer
+		envoyer.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) { 
+				try {
+					sujet.diffuser(msg.getText());
+					msg.setText("");
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
+			}	
+		});
+		
+		JPanel panel = new JPanel();
+		JPanel panelSouth = new JPanel();
+		
 		panelSouth.setLayout(new BoxLayout(panelSouth, BoxLayout.Y_AXIS));
-		panelSouth.add(message);
+		panelSouth.add(msg);
 		panelSouth.add(envoyer);
-		envoyer.setAlignmentX(panelSouth.CENTER_ALIGNMENT);
+		envoyer.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.setLayout(borderLayout);
 		panel.add(messages,BorderLayout.CENTER);
 		panel.add(panelSouth,BorderLayout.SOUTH);
@@ -44,7 +63,7 @@ public class AfficheurClient extends UnicastRemoteObject implements InterfaceAff
 		fenetre.setVisible(true);
 	}
 	
-	public void affiche(String msg) {
+	public void affiche(String msg) throws RemoteException{
 		messages.setText(messages.getText() + "\n" + msg);
 	}
 
