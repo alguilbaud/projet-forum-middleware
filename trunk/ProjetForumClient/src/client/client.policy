@@ -1,3 +1,0 @@
-grant codeBase "file:/comptes/E096489E/workspaceLuna/ProjetForumClient/src" {
-    permission java.security.AllPermission;
-};

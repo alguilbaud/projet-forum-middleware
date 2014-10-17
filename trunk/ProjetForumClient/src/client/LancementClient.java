@@ -1,5 +1,6 @@
 package client;
 
+import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
@@ -12,13 +13,10 @@ public class LancementClient {
 			 System.setSecurityManager(new SecurityManager());
 		 }
 		 try {
-			 String name = "Serveur";
-			 Registry registry = LocateRegistry.getRegistry();
-			 IServeurC serveur = (IServeurC) registry.lookup(name);
-	     
-	     
-			 Set<String> nomSujets = serveur.ensembleSujets();
-			 
+			 ISujet sujet =
+					 (ISujet) Naming.lookup(
+					 "rmi://localhost:8099/sujet");
+			 System.out.println(sujet);
 			 //à finir
 			 /*IClient stub1 = (IClient) UnicastRemoteObject.exportObject(client1, 0);
 			 chat.addClient(stub1);*/
