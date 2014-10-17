@@ -3,6 +3,7 @@ package client;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Set;
 
 public class LancementClient {
 
@@ -16,9 +17,11 @@ public class LancementClient {
 			 IServeurC serveur = (IServeurC) registry.lookup(name);
 	     
 	     
-			 IS client1 = new Client("client1", chat);
-			 IClient stub1 = (IClient) UnicastRemoteObject.exportObject(client1, 0);
-			 chat.addClient(stub1);
+			 Set<String> nomSujets = serveur.ensembleSujets();
+			 
+			 //à finir
+			 /*IClient stub1 = (IClient) UnicastRemoteObject.exportObject(client1, 0);
+			 chat.addClient(stub1);*/
 		 } catch(Exception e){
 			 e.printStackTrace();
 		 }
