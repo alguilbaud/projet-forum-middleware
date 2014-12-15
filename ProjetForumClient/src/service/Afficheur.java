@@ -13,6 +13,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -21,6 +22,7 @@ public class Afficheur extends UnicastRemoteObject implements IAfficheur {
 	private JFrame fenetre;
 	private JTextArea messages;
 	private ISujet sujet;
+	private JScrollPane scrollPane;
 	
 	public boolean ouvert;
 	
@@ -37,6 +39,11 @@ public class Afficheur extends UnicastRemoteObject implements IAfficheur {
 		
 		messages = new JTextArea();
 		messages.setEditable(false);
+		
+		scrollPane = new JScrollPane(messages); //ascenceur pour les messages quand il y en a de trop
+		
+		JTextField pseudo = new JTextField("Anonyme");
+		
 		JTextField msg = new JTextField();
 		JButton envoyer = new JButton("envoyer");
 		
@@ -44,8 +51,10 @@ public class Afficheur extends UnicastRemoteObject implements IAfficheur {
 		envoyer.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { 
 				try {
-					sujet.diffuser(msg.getText());
+					pseudo.setEditable(false);
+					sujet.diffuser(pseudo.getText() + " : " + msg.getText());
 					msg.setText("");
+					
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
@@ -54,14 +63,19 @@ public class Afficheur extends UnicastRemoteObject implements IAfficheur {
 		
 		JPanel panel = new JPanel();
 		JPanel panelSouth = new JPanel();
+		JPanel panelNorth = new JPanel();
 		
 		panelSouth.setLayout(new BoxLayout(panelSouth, BoxLayout.Y_AXIS));
 		panelSouth.add(msg);
 		panelSouth.add(envoyer);
+		
+		panelNorth.add(pseudo);
+		
 		envoyer.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.setLayout(borderLayout);
-		panel.add(messages,BorderLayout.CENTER);
+		panel.add(scrollPane,BorderLayout.CENTER);
 		panel.add(panelSouth,BorderLayout.SOUTH);
+		panel.add(panelNorth,BorderLayout.NORTH);
 		
 		fenetre.add(panel);
 		
@@ -95,7 +109,7 @@ public class Afficheur extends UnicastRemoteObject implements IAfficheur {
 	}
 	
 	public void affiche(String msg) throws RemoteException{
-		messages.setText(messages.getText() + "\n" + msg);
+		messages.setText(msg + "\n" + messages.getText());
 	}
 
 	public void fermer(){
