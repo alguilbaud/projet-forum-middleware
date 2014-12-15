@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Serveur extends UnicastRemoteObject implements IServeur{
 	HashMap<String,Sujet> mapSujets;
@@ -21,6 +22,8 @@ public class Serveur extends UnicastRemoteObject implements IServeur{
 	}
 	
 	public Set<String> ensembleSujets() throws RemoteException{
-		return mapSujets.keySet();
+		TreeSet<String> set = new TreeSet<String>();
+		set.addAll(mapSujets.keySet());
+		return set;
 	}
 }
