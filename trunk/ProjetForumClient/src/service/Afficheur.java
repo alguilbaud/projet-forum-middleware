@@ -16,13 +16,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class AfficheurClient extends UnicastRemoteObject implements IAfficheur {
+public class Afficheur extends UnicastRemoteObject implements IAfficheur {
 	
 	private JFrame fenetre;
 	private JTextArea messages;
 	private ISujet sujet;
 	
-	public AfficheurClient(ISujet suj) throws RemoteException {
+	public boolean ouvert;
+	
+	public Afficheur(ISujet suj) throws RemoteException {
 		super();
 		sujet = suj;
 		fenetre = new JFrame();
@@ -70,7 +72,8 @@ public class AfficheurClient extends UnicastRemoteObject implements IAfficheur {
 
 			public void windowClosed(WindowEvent e) {
 				try {
-					sujet.desinscription(AfficheurClient.this);
+					sujet.desinscription(Afficheur.this);
+					ouvert = false;
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
@@ -85,6 +88,8 @@ public class AfficheurClient extends UnicastRemoteObject implements IAfficheur {
 			public void windowDeactivated(WindowEvent e) {}
 			
 		});
+		
+		ouvert = true;
 		
 		fenetre.setVisible(true);
 	}
