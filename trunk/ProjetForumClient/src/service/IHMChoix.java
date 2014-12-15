@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 public class IHMChoix{
 	
-	public IHMChoix(IServeurC serveur)
+	public IHMChoix(IServeur serveur)
 	{
 		JFrame fenetre = new JFrame();
 	    fenetre.setTitle("Choisir un sujet"); //On donne un titre à l'application

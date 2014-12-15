@@ -9,17 +9,10 @@ import java.util.Set;
 public class LancementClient {
 
 	public static void main(String[] args) {
-		 if (System.getSecurityManager() == null) {
-			 System.setSecurityManager(new SecurityManager());
-		 }
 		 try {
-			 ISujetC sujet =
-					 (ISujetC) Naming.lookup(
-					 "rmi://localhost:8099/sujet");
-			 System.out.println(sujet);
-			 //à finir
-			 /*IClient stub1 = (IClient) UnicastRemoteObject.exportObject(client1, 0);
-			 chat.addClient(stub1);*/
+			 IServeur serveur = (IServeur) Naming.lookup("rmi://localhost:8099/serveur");
+			 System.out.println(serveur);
+			 
 		 } catch(Exception e){
 			 e.printStackTrace();
 		 }
