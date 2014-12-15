@@ -1,4 +1,4 @@
-package client;
+package service;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -20,9 +20,9 @@ public class AfficheurClient extends UnicastRemoteObject implements IAfficheurCl
 	
 	private JFrame fenetre;
 	private JTextArea messages;
-	private ISujet sujet;
+	private ISujetC sujet;
 	
-	public AfficheurClient(ISujet suj) throws RemoteException {
+	public AfficheurClient(ISujetC suj) throws RemoteException {
 		super();
 		sujet = suj;
 		fenetre = new JFrame();

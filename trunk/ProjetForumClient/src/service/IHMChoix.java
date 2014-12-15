@@ -1,4 +1,4 @@
-package client;
+package service;
 
 import java.awt.FlowLayout;
 import java.rmi.RemoteException;
