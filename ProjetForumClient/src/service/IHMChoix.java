@@ -19,8 +19,8 @@ public class IHMChoix{
 		fenetre.setResizable(false) ; //On interdit la redimensionnement de la fenêtre
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //On dit à l'application de se fermer
 		
-		FlowLayout flowLayout=new FlowLayout();
-		JPanel panel= new JPanel();
+		FlowLayout flowLayout = new FlowLayout();
+		JPanel panel = new JPanel();
 		panel.setLayout(flowLayout);
 		fenetre.add(panel);
 		

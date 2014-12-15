@@ -7,24 +7,21 @@ import java.rmi.RemoteException;
 public class ActionBoutonSujet implements ActionListener{
 	
 	private ISujet sujet;
-	private AfficheurClient aff;
-	private boolean ouvert;
+	private Afficheur aff;
 	
 	public ActionBoutonSujet (ISujet suj){
 		sujet = suj;
-		ouvert = false;
+		aff = null;
 	}
 
 	public void actionPerformed(ActionEvent evt) {
 		try {
-			if(!ouvert){
-				aff = new AfficheurClient(sujet);
-				sujet.inscription(aff);
-				ouvert = true;
+			if(aff!=null && aff.ouvert){
+				aff.fermer();
 			}
 			else{
-				aff.fermer();
-				ouvert = false;
+				aff = new Afficheur(sujet);
+				sujet.inscription(aff);
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();

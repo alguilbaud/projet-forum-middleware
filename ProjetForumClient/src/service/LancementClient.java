@@ -12,7 +12,7 @@ public class LancementClient {
 		 try {
 			 IServeur serveur = (IServeur) Naming.lookup("rmi://localhost:8099/serveur");
 			 System.out.println(serveur);
-			 
+			 IHMChoix ihm = new IHMChoix(serveur);
 		 } catch(Exception e){
 			 e.printStackTrace();
 		 }
