@@ -16,13 +16,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class AfficheurClient extends UnicastRemoteObject implements IAfficheurClient {
+public class AfficheurClient extends UnicastRemoteObject implements IAfficheur {
 	
 	private JFrame fenetre;
 	private JTextArea messages;
-	private ISujetC sujet;
+	private ISujet sujet;
 	
-	public AfficheurClient(ISujetC suj) throws RemoteException {
+	public AfficheurClient(ISujet suj) throws RemoteException {
 		super();
 		sujet = suj;
 		fenetre = new JFrame();
