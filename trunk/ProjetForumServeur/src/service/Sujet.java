@@ -27,8 +27,13 @@ public class Sujet extends UnicastRemoteObject implements ISujet {
 	}
 	
 	public synchronized void diffuser(String msg){
-		for (IAfficheur aff : listeAbonnes){
-			aff.affiche(msg);
+		try{
+			for (IAfficheur aff : listeAbonnes){
+				aff.affiche(msg);
+			}
+		}
+		catch (RemoteException e){
+			e.printStackTrace();
 		}
 	}
 }
