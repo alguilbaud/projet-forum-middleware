@@ -1,4 +1,4 @@
-package client;
+package service;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,11 +6,11 @@ import java.rmi.RemoteException;
 
 public class ActionBoutonSujet implements ActionListener{
 	
-	private ISujet sujet;
+	private ISujetC sujet;
 	private AfficheurClient aff;
 	private boolean ouvert;
 	
-	public ActionBoutonSujet (ISujet suj){
+	public ActionBoutonSujet (ISujetC suj){
 		sujet = suj;
 		ouvert = false;
 	}

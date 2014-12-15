@@ -1,4 +1,4 @@
-package client;
+package service;
 
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
@@ -13,8 +13,8 @@ public class LancementClient {
 			 System.setSecurityManager(new SecurityManager());
 		 }
 		 try {
-			 ISujet sujet =
-					 (ISujet) Naming.lookup(
+			 ISujetC sujet =
+					 (ISujetC) Naming.lookup(
 					 "rmi://localhost:8099/sujet");
 			 System.out.println(sujet);
 			 //à finir
